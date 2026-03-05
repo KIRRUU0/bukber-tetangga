@@ -1,0 +1,172 @@
+/* ═══════════════════════════════════════════════
+   layout.css
+   Page structure, card shell, sections, dividers,
+   and all responsive breakpoints
+   ═══════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────
+   PAGE — fluid responsive wrapper
+   ───────────────────────────────────────── */
+.page {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 48px auto 72px;
+  padding: 0 24px;
+}
+
+/* ─────────────────────────────────────────
+   CARD SHELL
+   ───────────────────────────────────────── */
+.card-shell {
+  background: var(--white);
+  border: 1px solid rgba(62,42,24,.1);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 4px rgba(62,42,24,.06),
+    0 8px 32px rgba(62,42,24,.08),
+    0 24px 64px rgba(62,42,24,.05);
+}
+
+/* top accent bar */
+.card-shell::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: var(--brown);
+}
+
+/* ─────────────────────────────────────────
+   SECTIONS
+   ───────────────────────────────────────── */
+.sec        { padding: 52px clamp(28px, 8%, 96px); }
+.sec-tinted { background: var(--surface); }
+.sec-green  { background: var(--green-pale); }
+
+/* ─── Horizontal divider ─── */
+.divider {
+  height: 1px;
+  background: rgba(62,42,24,.08);
+  margin: 0;
+}
+
+/* ─── Ornamental dot separator ─── */
+.sep {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px clamp(28px, 8%, 96px);
+}
+.sep::before, .sep::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(62,42,24,.1);
+}
+.sep-mark {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--brown-lt);
+  opacity: .4;
+}
+
+/* ─────────────────────────────────────────
+   FOOTER
+   ───────────────────────────────────────── */
+.footer-bar {
+  height: 3px;
+  background: var(--green);
+  opacity: .18;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 9.5px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--brown-lt);
+  opacity: .55;
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   xs  < 480px   (small phone)
+   sm  < 640px   (phone)
+   md  < 768px   (tablet portrait)
+   lg  < 1024px  (tablet landscape / small laptop)
+   xl  ≥ 1024px  (desktop)
+   ══════════════════════════════════════════ */
+
+/* ── Desktop (≥1024px) ── */
+@media (min-width: 1024px) {
+  .page        { padding: 0 40px; }
+  .sec         { padding: 64px clamp(64px, 10%, 120px); }
+  .hero        { padding: 80px clamp(64px, 10%, 120px) 72px; }
+  .display     { font-size: clamp(36px, 4.5vw, 52px); }
+  .cd-box      { width: 88px; padding: 18px 10px 14px; }
+  .cd-num      { font-size: 38px; }
+  .map-wrap iframe { height: 340px !important; }
+  .form-wrap   { max-width: 480px; }
+  .hero-rule   { width: 56px; }
+  .site-footer { padding: 28px 20px; font-size: 10px; }
+}
+
+/* ── Large desktop (≥1280px) ── */
+@media (min-width: 1280px) {
+  .page        { max-width: 1100px; padding: 0 48px; }
+  .sec         { padding: 72px clamp(80px, 12%, 160px); }
+  .hero        { padding: 96px clamp(80px, 12%, 160px) 80px; }
+  .cd-box      { width: 96px; }
+  .cd-num      { font-size: 42px; }
+  .map-wrap iframe { height: 380px !important; }
+}
+
+/* ── Tablet landscape (768–1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page        { max-width: 780px; padding: 0 32px; }
+  .sec         { padding: 56px 56px; }
+  .hero        { padding: 72px 56px 64px; }
+  .cd-box      { width: 80px; }
+  .cd-num      { font-size: 34px; }
+}
+
+/* ── Tablet portrait (640–767px) ── */
+@media (min-width: 640px) and (max-width: 767px) {
+  .page        { max-width: 660px; padding: 0 20px; }
+  .sec         { padding: 48px 40px; }
+  .hero        { padding: 60px 40px 52px; }
+}
+
+/* ── Phone (480–639px) ── */
+@media (max-width: 639px) {
+  .page        { margin: 0 0 40px; padding: 0; }
+  .card-shell  { border-radius: 0; border-left: none; border-right: none; }
+  .sec         { padding: 40px 24px; }
+  .hero        { padding: 52px 24px 44px; }
+  .crescent    { top: 16px; right: 18px; width: 36px; height: 36px; }
+  .cd-box      { width: 62px; padding: 12px 6px 10px; }
+  .cd-num      { font-size: 26px; }
+  .sep         { padding: 16px 24px; }
+  .form-wrap   { max-width: 100%; }
+  .map-wrap iframe { height: 200px !important; }
+  .btn-map     { width: 100%; justify-content: center; }
+  .hero .display { font-size: clamp(28px, 8vw, 38px); }
+  .eyebrow       { font-size: 11px; }
+  .hero-tagline  { font-size: 14px; }
+}
+
+/* ── Small phone (<480px) ── */
+@media (max-width: 479px) {
+  .sec         { padding: 36px 18px; }
+  .hero        { padding: 44px 18px 40px; }
+  .cd-grid     { gap: 8px; }
+  .cd-box      { width: 56px; padding: 10px 4px 8px; }
+  .cd-num      { font-size: 22px; }
+  .cd-unit     { font-size: 7px; }
+  .date-pill   { font-size: 10px; padding: 5px 12px; }
+}

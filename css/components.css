@@ -1,0 +1,231 @@
+/* ═══════════════════════════════════════════════
+   components.css
+   Individual UI components:
+   Hero · Countdown · Map · Form · Scroll bar
+   ═══════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────
+   HERO
+   ───────────────────────────────────────── */
+.hero {
+  padding: 64px 60px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--white);
+  isolation: isolate;
+}
+
+/* Mosque silhouette — SVG data URI background */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 55%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 220' preserveAspectRatio='xMidYMax slice'%3E%3Cg fill='%233A5240' opacity='0.07'%3E%3C!-- Left minaret --%3E%3Crect x='42' y='40' width='18' height='160'/%3E%3Crect x='38' y='36' width='26' height='12'/%3E%3Cellipse cx='51' cy='36' rx='13' ry='20'/%3E%3Crect x='48' y='10' width='6' height='30'/%3E%3Cellipse cx='51' cy='10' rx='5' ry='8'/%3E%3C!-- Right minaret --%3E%3Crect x='740' y='40' width='18' height='160'/%3E%3Crect x='736' y='36' width='26' height='12'/%3E%3Cellipse cx='749' cy='36' rx='13' ry='20'/%3E%3Crect x='746' y='10' width='6' height='30'/%3E%3Cellipse cx='749' cy='10' rx='5' ry='8'/%3E%3C!-- Main dome base --%3E%3Crect x='120' y='110' width='560' height='110'/%3E%3C!-- Central dome --%3E%3Cellipse cx='400' cy='110' rx='120' ry='90'/%3E%3Crect x='280' y='108' width='240' height='6'/%3E%3C!-- Left smaller dome --%3E%3Cellipse cx='220' cy='130' rx='70' ry='55'/%3E%3Crect x='150' y='128' width='140' height='5'/%3E%3C!-- Right smaller dome --%3E%3Cellipse cx='580' cy='130' rx='70' ry='55'/%3E%3Crect x='510' y='128' width='140' height='5'/%3E%3C!-- Arch windows --%3E%3Cellipse cx='310' cy='175' rx='20' ry='28'/%3E%3Crect x='290' y='175' width='40' height='45'/%3E%3Cellipse cx='400' cy='175' rx='20' ry='28'/%3E%3Crect x='380' y='175' width='40' height='45'/%3E%3Cellipse cx='490' cy='175' rx='20' ry='28'/%3E%3Crect x='470' y='175' width='40' height='45'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100% auto;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Warm gradient over mosque */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(58,82,64,.06) 0%, transparent 65%),
+    linear-gradient(to bottom, rgba(248,244,239,0) 40%, rgba(248,244,239,.55) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ─── Crescent Moon (decorative) ─── */
+.crescent {
+  position: absolute;
+  top: 22px; right: 32px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  box-shadow: inset -11px -1px 0 0 var(--brown-mid);
+  opacity: .22;
+  animation: moon-float 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ─── Tiny star dots ─── */
+.hero-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--brown-lt);
+  opacity: 0;
+  animation: star-blink var(--d, 3s) ease-in-out infinite var(--dl, 0s);
+}
+
+.hero .eyebrow { justify-content: center; margin-bottom: 24px; }
+
+/* Thin green underline under title */
+.hero-rule {
+  width: 40px; height: 2px;
+  background: var(--green);
+  margin: 20px auto 0;
+  border-radius: 2px;
+  opacity: .5;
+}
+
+/* ─────────────────────────────────────────
+   COUNTDOWN
+   ───────────────────────────────────────── */
+.cd-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 28px 0 0;
+}
+
+.cd-box {
+  width: 72px;
+  padding: 14px 6px 10px;
+  border: 1px solid rgba(62,42,24,.15);
+  border-radius: 2px;
+  text-align: center;
+  background: var(--white);
+  position: relative;
+}
+
+/* Geometric corner ticks */
+.cd-box::before, .cd-box::after {
+  content: '';
+  position: absolute;
+  width: 5px; height: 5px;
+  border-color: var(--brown-lt);
+  border-style: solid;
+  opacity: .3;
+}
+.cd-box::before { top: 3px; left: 3px; border-width: 1px 0 0 1px; }
+.cd-box::after  { bottom: 3px; right: 3px; border-width: 0 1px 1px 0; }
+
+.cd-num {
+  display: block;
+  font-family: 'Gochi Hand', cursive;
+  font-size: 30px;
+  color: var(--brown);
+  line-height: 1;
+}
+.cd-unit {
+  display: block;
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--brown-lt);
+  margin-top: 5px;
+  opacity: .7;
+}
+
+/* ─────────────────────────────────────────
+   LOCATION / MAP
+   ───────────────────────────────────────── */
+.map-wrap { margin: 24px 0 20px; }
+
+.btn-map {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--brown);
+  color: var(--off-white);
+  border: none;
+  border-radius: 2px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  text-decoration: none;
+  transition: background .2s, transform .15s;
+}
+.btn-map:hover { background: var(--brown-mid); color: var(--off-white); transform: translateY(-1px); }
+.btn-map i     { font-size: 13px; }
+
+/* ─────────────────────────────────────────
+   FORM
+   ───────────────────────────────────────── */
+.form-wrap { max-width: 400px; margin: 0 auto; }
+
+.f-label {
+  display: block;
+  font-size: clamp(9px, 1.8vw, 10.5px);
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--brown-lt);
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.f-input {
+  width: 100%;
+  border: 1px solid rgba(62,42,24,.18);
+  border-radius: 2px;
+  background: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(13px, 2.5vw, 15px);
+  font-weight: 300;
+  color: var(--brown);
+  padding: 11px 13px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  -webkit-appearance: none;
+}
+.f-input::placeholder { color: rgba(62,42,24,.25); }
+.f-input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(58,82,64,.08);
+}
+textarea.f-input { resize: none; }
+
+.btn-hadir {
+  width: 100%;
+  padding: 13px;
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: 2px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(11px, 2vw, 13px);
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background .2s, transform .15s;
+}
+.btn-hadir:hover    { background: var(--green-lt); transform: translateY(-1px); }
+.btn-hadir:active   { transform: none; }
+.btn-hadir:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+.form-msg {
+  text-align: center;
+  font-size: clamp(11px, 2vw, 13px);
+  color: var(--green);
+  margin-top: 12px;
+  min-height: 16px;
+  letter-spacing: .02em;
+}
+.form-msg.err { color: #b04040; }
+
+/* ─────────────────────────────────────────
+   SCROLL PROGRESS BAR
+   ───────────────────────────────────────── */
+#scroll-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--green), var(--brown-lt));
+  z-index: 9999;
+  transition: width .12s linear;
+}

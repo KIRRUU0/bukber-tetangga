@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════════
+   animations.css
+   Keyframes + scroll-reveal utility classes
+   ═══════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────
+   HERO DECORATIVE KEYFRAMES
+   ───────────────────────────────────────── */
+@keyframes moon-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+@keyframes star-blink {
+  0%, 100% { opacity: 0; }
+  50%       { opacity: var(--op, .5); }
+}
+
+/* ─────────────────────────────────────────
+   SCROLL REVEAL KEYFRAMES
+   ───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(-22px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(22px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeScale {
+  from { opacity: 0; transform: scale(.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes fadePop {
+  0%   { opacity: 0; transform: translateY(16px) scale(.96); }
+  60%  { opacity: 1; transform: translateY(-3px) scale(1.01); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ─────────────────────────────────────────
+   SCROLL REVEAL — base state (hidden)
+   ───────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition: opacity .05s;
+}
+
+/* Entering viewport scrolling DOWN */
+.reveal.visible-down {
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(.22,.68,0,1.1);
+  animation-duration: .65s;
+}
+.reveal.visible-down[data-anim="up"]    { animation-name: fadeUp; }
+.reveal.visible-down[data-anim="left"]  { animation-name: fadeLeft; }
+.reveal.visible-down[data-anim="right"] { animation-name: fadeRight; }
+.reveal.visible-down[data-anim="scale"] { animation-name: fadeScale; }
+.reveal.visible-down[data-anim="pop"]   { animation-name: fadePop; }
+
+/* Entering viewport scrolling UP — directions reversed */
+.reveal.visible-up {
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(.22,.68,0,1.1);
+  animation-duration: .65s;
+}
+.reveal.visible-up[data-anim="up"]    { animation-name: fadeDown; }
+.reveal.visible-up[data-anim="left"]  { animation-name: fadeRight; }
+.reveal.visible-up[data-anim="right"] { animation-name: fadeLeft; }
+.reveal.visible-up[data-anim="scale"] { animation-name: fadeScale; }
+.reveal.visible-up[data-anim="pop"]   { animation-name: fadePop; }
+
+/* Stagger delays */
+.reveal[data-delay="0"] { animation-delay: 0s; }
+.reveal[data-delay="1"] { animation-delay: .08s; }
+.reveal[data-delay="2"] { animation-delay: .16s; }
+.reveal[data-delay="3"] { animation-delay: .26s; }
+.reveal[data-delay="4"] { animation-delay: .38s; }
+.reveal[data-delay="5"] { animation-delay: .52s; }
+
+/* ─── Countdown boxes — staggered pop ─── */
+.cd-box { opacity: 0; }
+.cd-box.visible {
+  animation: fadePop .6s cubic-bezier(.22,.68,0,1.1) both;
+}
+.cd-box:nth-child(1) { animation-delay: .05s; }
+.cd-box:nth-child(2) { animation-delay: .15s; }
+.cd-box:nth-child(3) { animation-delay: .25s; }
+.cd-box:nth-child(4) { animation-delay: .35s; }
+
+/* ─── Divider line draw ─── */
+.divider-anim {
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform .8s cubic-bezier(.22,.68,0,1.1);
+}
+.divider-anim.visible { transform: scaleX(1); }
+
+/* ─── Hero load animations ─── */
+.fu { animation: fadeUp .65s cubic-bezier(.22,.68,0,1.1) both; }
+.d1 { animation-delay: .08s; }
+.d2 { animation-delay: .18s; }
+.d3 { animation-delay: .30s; }
+.d4 { animation-delay: .42s; }
+.fu[data-paused] { animation-play-state: paused; }
