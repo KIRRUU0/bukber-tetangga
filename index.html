@@ -183,10 +183,13 @@
       .cd-box      { width: 62px; padding: 12px 6px 10px; }
       .cd-num      { font-size: 26px; }
       .sep         { padding: 16px 24px; }
-      .display     { font-size: clamp(22px, 6vw, 30px); }
       .form-wrap   { max-width: 100%; }
       .map-wrap iframe { height: 200px !important; }
       .btn-map     { width: 100%; justify-content: center; }
+      /* ensure hero title never goes below 28px on phones */
+      .hero .display { font-size: clamp(28px, 8vw, 38px); }
+      .eyebrow       { font-size: 11px; }
+      .hero-tagline  { font-size: 14px; }
     }
 
     /* ── Small phone (<480px) ── */
@@ -201,15 +204,17 @@
     }
 
     /* ─────────────────────────────────────────
-       TYPOGRAPHY
+       TYPOGRAPHY — fluid across all breakpoints
        ───────────────────────────────────────── */
+
+    /* "Ramadan 1447 H" label */
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-size: 9.5px;
+      font-size: clamp(11px, 2.2vw, 13px);
       font-weight: 600;
-      letter-spacing: .28em;
+      letter-spacing: .26em;
       text-transform: uppercase;
       color: var(--green);
     }
@@ -219,10 +224,12 @@
       background: var(--green-lt);
     }
 
+    /* Main title — "Bukber Bersama Tetangga Tuku Cinere" */
     .display {
       font-family: 'Gochi Hand', cursive;
-      font-size: clamp(24px, 5vw, 42px);
-      line-height: 1.3;
+      /* mobile: min 30px · scales with vw · desktop: max 52px */
+      font-size: clamp(30px, 6.5vw, 52px);
+      line-height: 1.28;
       color: var(--brown);
       letter-spacing: .01em;
     }
@@ -231,20 +238,121 @@
       font-style: normal;
     }
 
+    /* Sub-headings (Tuku Cinere, Sampaikan Salammu) */
+    .display-sub {
+      font-family: 'Gochi Hand', cursive;
+      font-size: clamp(22px, 4.5vw, 34px);
+      line-height: 1.3;
+      color: var(--brown);
+      letter-spacing: .01em;
+    }
+    .display-sub em { color: var(--green); font-style: normal; }
+
+    /* Quote / body italic */
     .serif-italic {
       font-family: 'Lora', serif;
       font-style: italic;
-      font-size: 12,5px;
+      font-size: clamp(14px, 2.8vw, 17px);
       line-height: 1.85;
       color: var(--brown-mid);
     }
 
+    /* Section eyebrow labels (LOKASI, KONFIRMASI, etc.) */
     .small-label {
-      font-size: 15px;
+      font-size: clamp(9px, 1.8vw, 11px);
       font-weight: 600;
       letter-spacing: .26em;
       text-transform: uppercase;
       color: var(--brown-lt);
+    }
+
+    /* Hero tagline */
+    .hero-tagline {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: clamp(14px, 2.6vw, 17px);
+      color: var(--brown-lt);
+      margin-top: 18px;
+      letter-spacing: .02em;
+    }
+
+    /* Date pill */
+    .date-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid rgba(62,42,24,.12);
+      border-radius: 100px;
+      padding: 7px 18px;
+      font-size: clamp(11px, 2.2vw, 13px);
+      color: var(--brown-mid);
+      margin-top: 24px;
+      background: var(--surface);
+      letter-spacing: .02em;
+    }
+    .date-pill i { color: var(--green); }
+
+    /* Form labels */
+    .f-label {
+      display: block;
+      font-size: clamp(9px, 1.8vw, 10.5px);
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      margin-bottom: 6px;
+      text-align: left;
+    }
+
+    /* Form inputs */
+    .f-input {
+      width: 100%;
+      border: 1px solid rgba(62,42,24,.18);
+      border-radius: 2px;
+      background: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(13px, 2.5vw, 15px);
+      font-weight: 300;
+      color: var(--brown);
+      padding: 11px 13px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .f-input::placeholder { color: rgba(62,42,24,.25); }
+    .f-input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(58,82,64,.08);
+    }
+    textarea.f-input { resize: none; }
+
+    /* Send button */
+    .btn-hadir {
+      width: 100%;
+      padding: 13px;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(11px, 2vw, 13px);
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-hadir:hover    { background: var(--green-lt); transform: translateY(-1px); }
+    .btn-hadir:active   { transform: none; }
+    .btn-hadir:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    /* Quote author */
+    .quote-author {
+      font-size: clamp(10px, 1.8vw, 12px);
+      font-weight: 500;
+      letter-spacing: .12em;
+      color: var(--green);
+      margin-top: 14px;
     }
 
     /* ─────────────────────────────────────────
@@ -317,15 +425,6 @@
 
     .hero .eyebrow { justify-content: center; margin-bottom: 24px; }
 
-    .hero-tagline {
-      font-family: 'Lora', serif;
-      font-style: italic;
-      font-size: 13.5px;
-      color: var(--brown-lt);
-      margin-top: 18px;
-      letter-spacing: .02em;
-    }
-
     /* thin underline accent */
     .hero-rule {
       width: 40px; height: 2px;
@@ -386,31 +485,9 @@
       opacity: .7;
     }
 
-    .date-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      border: 1px solid rgba(62,42,24,.12);
-      border-radius: 100px;
-      padding: 6px 16px;
-      font-size: 11px;
-      color: var(--brown-mid);
-      margin-top: 24px;
-      background: var(--surface);
-      letter-spacing: .02em;
-    }
-    .date-pill i { color: var(--green); }
-
     /* ─────────────────────────────────────────
        CONTENT QUOTE
        ───────────────────────────────────────── */
-    .quote-author {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: .12em;
-      color: var(--green);
-      margin-top: 14px;
-    }
 
     /* ─────────────────────────────────────────
        LOCATION
@@ -428,7 +505,7 @@
       border: none;
       border-radius: 2px;
       font-family: 'DM Sans', sans-serif;
-      font-size: 11.5px;
+      font-size: clamp(10px, 2vw, 12px);
       font-weight: 500;
       letter-spacing: .1em;
       text-transform: uppercase;
@@ -444,60 +521,9 @@
        ───────────────────────────────────────── */
     .form-wrap { max-width: 400px; margin: 0 auto; }
 
-    .f-label {
-      display: block;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-      color: var(--brown-lt);
-      margin-bottom: 6px;
-      text-align: left;
-    }
-
-    .f-input {
-      width: 100%;
-      border: 1px solid rgba(62,42,24,.18);
-      border-radius: 2px;
-      background: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13.5px;
-      font-weight: 300;
-      color: var(--brown);
-      padding: 11px 13px;
-      outline: none;
-      transition: border-color .2s, box-shadow .2s;
-    }
-    .f-input::placeholder { color: rgba(62,42,24,.25); }
-    .f-input:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(58,82,64,.08);
-    }
-    textarea.f-input { resize: none; }
-
-    .btn-hadir {
-      width: 100%;
-      padding: 13px;
-      background: var(--green);
-      color: var(--white);
-      border: none;
-      border-radius: 2px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      cursor: pointer;
-      margin-top: 6px;
-      transition: background .2s, transform .15s;
-    }
-    .btn-hadir:hover    { background: var(--green-lt); transform: translateY(-1px); }
-    .btn-hadir:active   { transform: none; }
-    .btn-hadir:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-
     .form-msg {
       text-align: center;
-      font-size: 12px;
+      font-size: clamp(11px, 2vw, 13px);
       color: var(--green);
       margin-top: 12px;
       min-height: 16px;
@@ -517,7 +543,7 @@
     .site-footer {
       text-align: center;
       padding: 20px;
-      font-size: 10px;
+      font-size: 9.5px;
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--brown-lt);
@@ -726,7 +752,7 @@
     <!-- ══════════ LOCATION ══════════ -->
     <section class="sec sec-tinted">
       <p class="small-label reveal" data-anim="up" data-delay="0" style="text-align:center; margin-bottom:6px;">Lokasi</p>
-      <h2 class="display reveal" data-anim="up" data-delay="1" style="font-size:26px; text-align:center; margin-bottom:8px;">
+      <h2 class="display-sub reveal" data-anim="up" data-delay="1" style="text-align:center; margin-bottom:8px;">
         Tuku Cinere
       </h2>
       <p class="serif-italic reveal" data-anim="up" data-delay="2" style="font-size:13px; text-align:center; max-width:340px; margin:0 auto;">
@@ -762,7 +788,7 @@
 
     <!-- ══════════ RSVP ══════════ -->
     <section class="sec" style="text-align:center;">
-      <h2 class="display reveal" data-anim="up" data-delay="0" style="font-size:22px; margin-bottom:8px; line-height:1.4;">
+      <h2 class="display-sub reveal" data-anim="up" data-delay="0" style="margin-bottom:8px; line-height:1.35;">
         Harapan kamu di bulan<br><em>Puasa Ramadhan</em> tahun ini?
       </h2>
 
@@ -810,7 +836,7 @@
 </div><!-- /page -->
 
 <footer class="site-footer">
-  <strong>Bukber Tetangga 1447 H</strong> &nbsp;·&nbsp; M Haekal Arrafi
+  <strong>Tuku Cinere</strong> &nbsp;·&nbsp; Bukber Tetangga 1447 H
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
